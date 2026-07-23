@@ -12,7 +12,35 @@
 
             關鍵字: 國民年金、勞保老年給付、勞保一次金、合併年資、雙年金、請領 試算、A式限制
 
-        </div>
 
+            <h3>首先輸入年資判斷是否能領年金</h3>
+
+            <p>輸入勞保年資</p>
+            <span>
+                <input type="number" step="1" value="1" class="small-input" id="labor-year"/>年
+                <input type="number" step="1" value="5" class="small-input" id="labor-month"/>月
+                <input type="number" step="1" value="3" class="small-input" id="labor-day"/>日
+            </span>
+            <span>
+                * 註: 勞保年資<input type="number" step="1" value="15" class="default-input" id="labor-thres"/>年 為條件之一
+            </span>
+
+            <p>輸入國民年金年資</p>
+            <span>
+                <input type="number" step="1" value="1" class="small-input" id="nation-year"/>年
+                <input type="number" step="1" value="5" class="small-input" id="nation-month"/>月
+                <input type="number" step="1" value="3" class="small-input" id="nation-day"/>日
+            </span>
+            
+            
+
+            <p></p>
+            <button id="cal-years">計算年資</button>
+
+            <p>總年資如下: </p>
+            <p id="year-result"></p>
+            
+            <script src="index.js"></script>
+        </div>
     </body>
 </html>
