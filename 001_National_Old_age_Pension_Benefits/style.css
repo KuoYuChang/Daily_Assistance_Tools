@@ -24,20 +24,16 @@ body {
 
 
 .small-input {
-  /*width: 40px;
-  height: 20px;*/
-  box-sizing: border-box;
-  width: 8ch;
+  width: 40px;
+  height: 20px;
   padding: 2px 5px;
-  /*font-size: 12px*/; /* Shrinks the text inside too */
+  font-size: 12px; /* Shrinks the text inside too */
 }
 
 .default-input {
   background-color: #f4efea;
-  /*width: 40px;
-  height: 20px;*/
-  box-sizing: border-box;
-  width: 6ch;
+  width: 40px;
+  height: 20px;
   padding: 2px 5px;
-  /*font-size: 10px;*/ /* Shrinks the text inside too */
+  font-size: 10px; /* Shrinks the text inside too */
 }
