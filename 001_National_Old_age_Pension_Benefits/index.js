@@ -60,12 +60,12 @@ function sum_years(year, month, day, round_up=false){
     }
     
     var month_total = month + day_total
-    const month_total_print = (month_total).toFixed(3)
+    const month_total_print = Number((month_total).toFixed(3))
     print_str = print_str + ` ---> ${year}年 ${month_total_print}月`
     
     month_total = month_total/ 12.0
     var year_total = year + month_total
-    const year_total_print = (year_total).toFixed(3)
+    const year_total_print = Number((year_total).toFixed(3))
     print_str = print_str + ` ---> ${year_total_print}年`
 
     var return_obj = {
@@ -146,7 +146,7 @@ function calculate_all(){
     
 
     var labor_one_time = calcu_money(labor_principal, labor_year_total, rate=100.0, base=0.0)
-    const labor_one_time_print = (labor_one_time).toFixed(3)
+    const labor_one_time_print = Number((labor_one_time).toFixed(3))
     var labor_result = `勞保金額如下:<br>勞保一次金: ${labor_principal} X ${labor_year_total} = ${labor_one_time_print}元<br><br>`
 
     var labor_a = calcu_money(labor_principal, labor_year_total, rate=labor_rate_a, base=labor_min_a)
