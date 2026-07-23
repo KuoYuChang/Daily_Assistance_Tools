@@ -35,11 +35,13 @@ function sum_years(year, month, day, round_up=false){
     }
     
     var month_total = month + day_total
-    print_str = print_str + ` ---> ${year}年 ${month_total}月`
+    const month_total_print = (month_total).toFixed(3)
+    print_str = print_str + ` ---> ${year}年 ${month_total_print}月`
     
     month_total = month_total/ 12.0
     var year_total = year + month_total
-    print_str = print_str + ` ---> ${year_total}年`
+    const year_total_print = (year_total).toFixed(3)
+    print_str = print_str + ` ---> ${year_total_print}年`
 
     var return_obj = {
         result_str: print_str,
