@@ -30,9 +30,24 @@ body {
   font-size: 18px; /* Shrinks the text inside too */
 }
 
+.large-input {
+  width: 120px;
+  height: 30px;
+  padding: 2px 5px;
+  font-size: 18px; /* Shrinks the text inside too */
+}
+
 .default-input {
   background-color: #f4efea;
   width: 60px;
+  height: 30px;
+  padding: 2px 5px;
+  font-size: 15px; /* Shrinks the text inside too */
+}
+
+.default-large-input {
+  background-color: #f4efea;
+  width: 80px;
   height: 30px;
   padding: 2px 5px;
   font-size: 15px; /* Shrinks the text inside too */
