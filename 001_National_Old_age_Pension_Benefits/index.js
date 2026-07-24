@@ -70,7 +70,7 @@ function sum_years(year, month, day, round_up=false){
 
     var return_obj = {
         result_str: print_str,
-        year_total: year_total
+        year_total: year_total_print
     }
 
     return return_obj
