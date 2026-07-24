@@ -56,3 +56,7 @@ body {
 .large-text {
   font-size: 1.5rem; /* Scales smoothly and respects user browser defaults */
 }
+
+.highlight-text {
+  color: red;
+}

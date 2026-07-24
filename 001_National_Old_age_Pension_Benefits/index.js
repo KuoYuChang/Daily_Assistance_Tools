@@ -190,9 +190,10 @@ function calculate_all(){
         //direct using rounding result
         const labor_nat_b_print = Number((labor_max_print + nation_b_print).toFixed(3))
 
-        suggest_str = suggest_str + `組合二(雙年金): 勞保老年給付${labor_max_print} + 國民年金B式${nation_b_print} = 月領${labor_nat_b_print}元<br><br>`
+        suggest_str = suggest_str + `組合二(雙年金): 勞保老年給付${labor_max_print} + 國民年金B式${nation_b_print} = 月領`
 
         if (labor_nat_b_print > nation_a_print){
+            suggest_str = suggest_str + `<span class="highlight-text">${labor_nat_b_print}元</span> <br><br></br>`
             var diff = labor_nat_b_print - nation_a_print
             var run_month = labor_one_time_print / diff
 
@@ -210,6 +211,7 @@ function calculate_all(){
             }
         }
         else{
+            suggest_str = suggest_str + `${labor_nat_b_print}元<br><br></br>`
             suggest_str = suggest_str + `單獨領國保A式 月領較多<br>`
         }
 
