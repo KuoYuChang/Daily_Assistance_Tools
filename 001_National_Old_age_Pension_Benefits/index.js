@@ -188,8 +188,6 @@ function calculate_all(){
 
     if (labor_month_allow){
         //direct using rounding result
-        console.log(typeof labor_max_print)
-        console.log(typeof nation_b_print)
         const labor_nat_b_print = Number((labor_max_print + nation_b_print).toFixed(3))
 
         suggest_str = suggest_str + `組合二(雙年金): 勞保老年給付${labor_max_print} + 國民年金B式${nation_b_print} = 月領${labor_nat_b_print}元<br><br>`
