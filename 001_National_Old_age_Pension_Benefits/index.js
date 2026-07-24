@@ -182,9 +182,18 @@ function calculate_all(){
     nation_result = nation_result + `國民年金B式: ${nation_principal} X ${nation_year_total} X ${nation_rate_b}% = ${nation_b_print}元<br>`
     nationResult.innerHTML = nation_result + `<br>`
 
+    if (nation_a > nation_b){
+        var nation_pick_str = "A"
+        var nation_max_print = nation_a_print
+    }
+    else {
+        var nation_pick_str = "B"
+        var nation_max_print = nation_b_print
+    }
 
 
-    var suggest_str = `組合一: 勞保一次金(${labor_one_time_print})、 單獨國民年金A式= 月領${nation_a_print}元<br>`
+
+    var suggest_str = `組合一: 勞保一次金(${labor_one_time_print})、 單獨國民年金${nation_pick_str}式= 月領${nation_max_print}元<br>`
 
     if (labor_month_allow){
         //direct using rounding result
@@ -192,27 +201,27 @@ function calculate_all(){
 
         suggest_str = suggest_str + `組合二(雙年金): 勞保老年給付${labor_max_print} + 國民年金B式${nation_b_print} = 月領`
 
-        if (labor_nat_b_print > nation_a_print){
+        if (labor_nat_b_print > nation_max_print){
             suggest_str = suggest_str + `<span class="highlight-text">${labor_nat_b_print}元</span> <br><br></br>`
-            var diff = labor_nat_b_print - nation_a_print
+            var diff = labor_nat_b_print - nation_max_print
             var run_month = labor_one_time_print / diff
 
             const diff_print = Number((diff).toFixed(3))
             const run_month_print = Number((run_month % 12).toFixed(3))
             const run_year_print = Number((run_month / 12.0).toFixed(0))
 
-            suggest_str = suggest_str + `雙年金比單獨國民A式 每月多${diff_print}元，約${run_year_print}年${run_month_print}月可超過 組合一之勞保一次金<br>`
+            suggest_str = suggest_str + `雙年金比單獨國民${nation_pick_str}式 每月多${diff_print}元，約${run_year_print}年${run_month_print}月可超過 組合一之勞保一次金<br>`
 
             if (run_year_print < RUN_THRES){
                 suggest_str = suggest_str + `推薦領雙年金: 勞保老年給付 + 國民年金B式<br>`
             }
             else{
-                suggest_str = suggest_str + `有點微妙，差距不大，若喜歡先拿勞保一次金、單獨國民A式OK；喜歡雙年金(勞保給付+國民B式)也OK<br>`
+                suggest_str = suggest_str + `有點微妙，差距不大，若喜歡先拿勞保一次金、單獨國民${nation_pick_str}式OK；喜歡雙年金(勞保給付+國民B式)也OK<br>`
             }
         }
         else{
             suggest_str = suggest_str + `${labor_nat_b_print}元<br><br></br>`
-            suggest_str = suggest_str + `單獨領國保A式 月領較多<br>`
+            suggest_str = suggest_str + `單獨領國保${nation_pick_str}式 月領較多<br>`
         }
 
     }
