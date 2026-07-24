@@ -52,3 +52,7 @@ body {
   padding: 2px 5px;
   font-size: 15px; /* Shrinks the text inside too */
 }
+
+.large-text {
+  font-size: 1.5rem; /* Scales smoothly and respects user browser defaults */
+}
