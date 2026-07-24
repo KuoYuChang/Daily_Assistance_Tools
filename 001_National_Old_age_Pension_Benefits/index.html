@@ -20,19 +20,19 @@
 
             <p>輸入勞保年資</p>
             <span>
-                <input type="number" step="1" value="1" class="small-input" id="labor-year"/>年
-                <input type="number" step="1" value="5" class="small-input" id="labor-month"/>月
-                <input type="number" step="1" value="3" class="small-input" id="labor-day"/>日
+                <input type="number" min="0" step="1" value="1" class="small-input" id="labor-year"/>年
+                <input type="number" min="0" step="1" value="5" class="small-input" id="labor-month"/>月
+                <input type="number" min="0" step="1" value="3" class="small-input" id="labor-day"/>日
             </span>
             <span>
-                * 註: 勞保年資<input type="number" step="1" value="15" class="default-input" id="labor-thres"/>年 為條件之一<br><br>
+                * 註: 勞保年資<input type="number" min="0" step="1" value="15" class="default-input" id="labor-thres"/>年 為條件之一<br><br>
             </span>
 
             <p>輸入國民年金年資</p>
             <span>
-                <input type="number" step="1" value="1" class="small-input" id="nation-year"/>年
-                <input type="number" step="1" value="5" class="small-input" id="nation-month"/>月
-                <input type="number" step="1" value="3" class="small-input" id="nation-day"/>日
+                <input type="number" min="0" step="1" value="1" class="small-input" id="nation-year"/>年
+                <input type="number" min="0" step="1" value="5" class="small-input" id="nation-month"/>月
+                <input type="number" min="0" step="1" value="3" class="small-input" id="nation-day"/>日
             </span>
             
             
@@ -49,7 +49,7 @@
                 <p>(最高60個月薪平均)</p>
 
                 <span>
-                    <input type="number" step="1" value="30300" class="large-input" id="labor-principal"/>元
+                    <input type="number" min="0" step="1" value="30300" class="large-input" id="labor-principal"/>元
                     <button class="butt" id="cal-money">計算金額</button>
                 </span>
                 <br><br>
@@ -58,18 +58,18 @@
                 <p>以下項目，如規定未變則無須更改</p>
 
                 <span>
-                    一式比率<input type="number" value="0.775" class="default-large-input" id="labor-rate-a"/>%、
-                    一式保證金<input type="number" value="3000" class="default-large-input" id="labor-min-a"/>元、
-                    二式比率<input type="number" value="1.55" class="default-large-input" id="labor-rate-b"/>%
+                    一式比率<input type="number" min="0" value="0.775" class="default-large-input" id="labor-rate-a"/>%、
+                    一式保證金<input type="number" min="0" value="3000" class="default-large-input" id="labor-min-a"/>元、
+                    二式比率<input type="number" min="0" value="1.55" class="default-large-input" id="labor-rate-b"/>%
                 </span>
 
                 <br><br>
 
                 <span>
-                    國民年金投保額<input type="number" value="21103" class="default-large-input" id="nation-principal"/>元、
-                    A式比率<input type="number" value="0.65" class="default-large-input" id="nation-rate-a"/>%、
-                    A式加計<input type="number" value="4049" class="default-large-input" id="nation-min-a"/>元、
-                    B式比率<input type="number" value="1.3" class="default-large-input" id="nation-rate-b"/>%
+                    國民年金投保額<input type="number" min="0" value="21103" class="default-large-input" id="nation-principal"/>元、
+                    A式比率<input type="number" min="0" value="0.65" class="default-large-input" id="nation-rate-a"/>%、
+                    A式加計<input type="number" min="0" value="4049" class="default-large-input" id="nation-min-a"/>元、
+                    B式比率<input type="number" min="0" value="1.3" class="default-large-input" id="nation-rate-b"/>%
                 </span>
 
                 <br><br><br>
