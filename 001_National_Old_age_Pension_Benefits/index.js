@@ -109,6 +109,10 @@ function calcu_years(){
         determine_str = determine_str + `勞保年資單獨超過${LABOR_THRES}年，可以勞保老年給付月領`
         labor_month_allow = true
     }
+    else if(labor_year_total <= 0.0){
+        determine_str = determine_str + `完全沒有投保過勞保，所有勞保給付都無法請領`
+        labor_month_allow = false
+    }
     else {
         // labor years below threshold
         determine_str = determine_str + `勞保年資單過短，`
@@ -119,6 +123,7 @@ function calcu_years(){
         }
         else{
             determine_str = determine_str + `與國民年金合併仍低於${LABOR_THRES}年，勞保無法月領，只能勞保一次金`
+            labor_month_allow = false
         }
     }
 
@@ -129,6 +134,10 @@ function calcu_years(){
 
 
 function calcu_money(principal, years, rate=100.0, base=0.0){
+    // force base became zero if empty years
+    if (years<=0.0){
+        base=0.0
+    } 
     return (principal * years * rate) * 0.01 + base 
 }
 
