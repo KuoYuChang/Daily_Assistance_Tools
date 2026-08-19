@@ -241,7 +241,7 @@ function calculate_all(){
 
             suggest_str = suggest_str + `雙年金比單獨國民${nation_pick_str}式 每月多${diff_print}元，`
             if(labor_15plus){
-                suggest_str = suggest_str + `因勞保年資已達${LABOR_THRES}年，故無法領一次金，以零元計，組合一僅剩單獨國A<br><br>`
+                suggest_str = suggest_str + `因勞保年資已達${LABOR_THRES}年，故無法領一次金，以零元計，組合一僅剩單獨國${nation_pick_str}<br><br>`
             }
             else{
                 suggest_str = suggest_str + `約${run_year_print}年${run_month_print}月可超過 組合一之勞保一次金<br>`
