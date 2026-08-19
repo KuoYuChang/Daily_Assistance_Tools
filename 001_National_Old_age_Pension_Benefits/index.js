@@ -31,6 +31,7 @@ var nationResult = document.getElementById("nation-result")
 var suggestResult = document.getElementById("suggest-result")
 
 var labor_year_total = 0.0
+var labor_15plus = false
 var nation_year_total = 0.0
 
 const LABOR_THRES = laborThres.valueAsNumber
@@ -106,24 +107,32 @@ function calcu_years(){
     var year_total = labor_year_total + nation_year_total
     var determine_str = `合計年資為${year_total}年<br><br>`
     if (labor_year_total >= LABOR_THRES){
-        determine_str = determine_str + `勞保年資單獨超過${LABOR_THRES}年，可以勞保老年給付月領`
+        labor_15plus = true
+        determine_str = determine_str + `勞保年資單獨已達${LABOR_THRES}年，可以<span class="highlight-text">勞保老年給付月領</span>，然而因此無法請領勞保一次金<br>
+                注意「勞保一次金」與「一次請領老年給付」不同，勞保年資已達${LABOR_THRES}年者不可領一次金，但有微小機會可以申請一次請領老年給付<br>`
+        determine_str = determine_str + `<span>自2026年起，僅少數人有資格能「一次請領老年給付」，如您生涯首次投保於2009年1月1日之後，即失去資格；<br>
+                如首次投保於2009年1月1日之前，則請參閱資格條文 勞動部勞工保險局: <br>
+                <a href="https://www.bli.gov.tw/0004856.html" target="_blank" rel="noopener noreferrer">業務專區 > 勞工保險 > 給付業務 > 老年給付 > 請領資格 > 三、一次請領老年給付</a></span>`
         labor_month_allow = true
     }
-    else if(labor_year_total <= 0.0){
-        determine_str = determine_str + `完全沒有投保過勞保，所有勞保給付都無法請領`
-        labor_month_allow = false
-    }
     else {
-        // labor years below threshold
-        determine_str = determine_str + `勞保年資單過短，`
-
-        if (year_total >= LABOR_THRES){
-            determine_str = determine_str + `然而與國民年金合併超過${LABOR_THRES}年，仍可勞保老年給付月領`
-            labor_month_allow = true
-        }
-        else{
-            determine_str = determine_str + `與國民年金合併仍低於${LABOR_THRES}年，勞保無法月領，只能勞保一次金`
+        labor_15plus = false
+        if(labor_year_total <= 0.0){
+            determine_str = determine_str + `完全沒有投保過勞保，所有勞保給付都無法請領`
             labor_month_allow = false
+        }
+        else {
+            // labor years below threshold
+            determine_str = determine_str + `勞保年資單過短，`
+
+            if (year_total >= LABOR_THRES){
+                determine_str = determine_str + `然而與國民年金合併超過${LABOR_THRES}年，仍可<span class="highlight-text">勞保老年給付月領</span>`
+                labor_month_allow = true
+            }
+            else{
+                determine_str = determine_str + `與國民年金合併仍低於${LABOR_THRES}年，勞保無法月領，只能勞保一次金`
+                labor_month_allow = false
+            }
         }
     }
 
@@ -153,10 +162,21 @@ function calculate_all(){
     var nation_rate_b = nationRateB.valueAsNumber
 
     
-
-    var labor_one_time = calcu_money(labor_principal, labor_year_total, rate=100.0, base=0.0)
+    var labor_one_time_rate = 100.0
+    if (labor_15plus){
+        labor_one_time_rate = 0.0
+    }
+    var labor_one_time = calcu_money(labor_principal, labor_year_total, rate=labor_one_time_rate, base=0.0)
     const labor_one_time_print = Number((labor_one_time).toFixed(3))
-    var labor_result = `勞保金額如下:<br>勞保一次金: ${labor_principal} X ${labor_year_total} = ${labor_one_time_print}元<br><br>`
+    var labor_result = `勞保金額如下:<br>`
+
+    if(labor_15plus){
+        labor_result = labor_result + `勞保一次金: 不得請領，因為勞保年資${labor_year_total}年，已超過${LABOR_THRES}年門檻，只能領年金，故一次金以0元計，<br>
+                因一次請領老年給付牽涉您生涯末三年之平均月薪資，與老年給付或一次金皆不同，本服務不評估一次請領老年給付<br><br>`
+    }
+    else{
+        labor_result = labor_result + `勞保一次金: ${labor_principal} X ${labor_year_total} = ${labor_one_time_print}元<br><br>`
+    }
 
     var labor_a = calcu_money(labor_principal, labor_year_total, rate=labor_rate_a, base=labor_min_a)
     var labor_b = calcu_money(labor_principal, labor_year_total, rate=labor_rate_b, base=0.0)
@@ -219,7 +239,13 @@ function calculate_all(){
             const run_month_print = Number((run_month % 12).toFixed(3))
             const run_year_print = Number((run_month / 12.0).toFixed(0))
 
-            suggest_str = suggest_str + `雙年金比單獨國民${nation_pick_str}式 每月多${diff_print}元，約${run_year_print}年${run_month_print}月可超過 組合一之勞保一次金<br>`
+            suggest_str = suggest_str + `雙年金比單獨國民${nation_pick_str}式 每月多${diff_print}元，`
+            if(labor_15plus){
+                suggest_str = suggest_str + `因勞保年資已達${LABOR_THRES}年，故無法領一次金，以零元計，組合一僅剩單獨國A<br><br>`
+            }
+            else{
+                suggest_str = suggest_str + `約${run_year_print}年${run_month_print}月可超過 組合一之勞保一次金<br>`
+            }
 
             if (run_year_print < RUN_THRES){
                 suggest_str = suggest_str + `推薦領雙年金: 勞保老年給付 + 國民年金B式<br>`
